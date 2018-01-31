@@ -1,0 +1,90 @@
+DONE create JSON file with array of books
+DONE each item include:
+    * author
+    * Date
+    * title
+    - img 
+DONE create gallery of books (bootstrap-gallery)
+- each book can be editable (create a button "Edit")
+- when click button edit, it open modal window where we can edit book fields and save
+- modal must have button "Save" and "Cancel"
+- each item must have button "DELETE"
+- proper validation for strings - not empty, and Date -should be validated with error message
+-  Use ​angular filter / pipe​ to show each book title
+in the following format : first letter of each word upper cased 
+and each other letter should be lower cased, 
+also remove any non-English letters from the title. 
+For example : A title with the name “@@THIS is a BooK!!” 
+should be changed to “This Is A Book” 
+DONE item should have a button "Add a new Book"
+
+
+DONE create books-gallery.component (main-component)
+
+DONE get styles from last final-project (pickspace)
+DONE create add-new-book-popup
+DONE create method getAllBookItems() in books.service and use it in books-list.componentetAllBookItems() in books.service and use it in books-list.component
+- add routing
+DONE create simple Server
+
+DONE create method Add create method Add
+- create delete method
+DONE add ngModel to book-popup and clear all fields, if popup is canceled
+- create newOrExistBookItem() in book-service
+- add exist bookItem into edit book-popup
+- 
+
+
+
+
+
+
+
+
+
+
+
+
+arr = [
+        {
+            id: 1
+            title: 'x'
+        }, 
+        {
+            id: 2
+            title: 'y'
+        }
+    ]
+
+
+    currentBook = {
+        id: 1,
+        title: 'y'
+    }
+
+    checkIfThisIsTitleOfCurrentBook(): boolean {
+        let isTitleOfCurrentBook = arr.filter(book => {
+            if (this.book.id === book.id) {
+                if (this.book.title === book.title) {
+                    return true;
+                }
+            }
+        })
+        return isTitleOfCurrentBook;
+    }
+
+    checkTitleForEditableBook() :boolean {
+        let titleForEditableBookIsExist = this.books.map(book => {
+            let isTitleOfCurrentBook = this.checkIfThisIsTitleOfCurrentBook();
+            if  (isTitleOfCurrentBook) {
+                return false;
+            } else {
+                if (this.book.title === book.title) {
+                    return true;
+                };
+            }
+        })
+        return titleForEditableBookIsExist;
+    }
+
+    

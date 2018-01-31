@@ -1,0 +1,14 @@
+<div class="add-new-book row">
+    <div class="col-md-2">
+      <book-popup #modal [books]="books"></book-popup>
+      <button (click)="modal.openNewBookModal()">Add a new book</button>
+    </div>
+  </div>
+<div class="main-content flex-row">
+    <div class="book col-md-4 col-sm-3 col-xs-6" 
+            *ngFor="let book of books" >
+      <book
+            [existBook]="book">
+      </book>
+  </div>
+</div>

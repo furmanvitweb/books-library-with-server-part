@@ -1,0 +1,112 @@
+<div bsModal #bookModal="bs-modal" 
+      class="modal fade" 
+      tabindex="-1" 
+      role="dialog" 
+      aria-hidden="true" 
+      data-backdrop="static" 
+      data-keyboard="false">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div class="row">
+          <div class="col-md-12 text-left">
+            Add/Edit Book
+          </div>
+        </div>
+      </div>
+      <div class="modal-body">
+        <form class="book-fields" #bookForm="ngForm">
+          <div class="row form-group">
+            <div class="col-md-3 text-right">
+                <label for="title">Title</label>
+            </div>
+            <div class="col-md-8">
+              <input type="text" 
+                      class="form-control" 
+                      placeholder="Add a title of the book"
+                      [(ngModel)]="currentBook.title"
+                      name="title"
+                      #title="ngModel"
+                      required>
+              <div *ngIf="title.invalid && (title.dirty || title.touched)"
+                      class="alert alert-danger">
+                      Please write the book`s title
+              </div>
+                      
+            </div>
+          </div>
+          <div class="row form-group">
+            <div class="col-md-3 text-right">
+                <label for="author">Author</label>
+            </div>
+            <div class="col-md-8">
+              <input  type="text" 
+                      class="form-control"
+                      placeholder="Add an author of the book"
+                      [(ngModel)]="currentBook.author"
+                      name="author"
+                      #author="ngModel"
+                      required>
+              <div  *ngIf="author.invalid && (author.dirty || author.touched)"
+                    class="alert alert-danger">
+                    Please write the book`s author
+              </div>
+            </div>
+          </div>
+          <div class="row form-group">
+            <div class="col-md-3 text-right">
+                <label for="date">Issue Date</label>
+            </div>
+            <div class="col-md-8">
+              <input type="text" 
+                    pattern="^\s*(3[01]|[12][0-9]|0?[1-9])\/(1[012]|0?[1-9])\/((?:15|16|17|18|19|20)\d{2})\s*$"
+                    
+                    class="form-control" 
+                    placeholder="Choose date XX/XX/XXXX"
+                    [(ngModel)]="currentBook.date"
+                    name="date"
+                    #date="ngModel"
+                    required>
+              <div *ngIf="date.invalid && (date.dirty || date.touched)"
+                    class="alert alert-danger">
+                    Please write the book`s issue date in this format: day/month/year, for example: 20/11/2017
+              </div>
+            </div>
+          </div>
+          <div class="row form-group">
+              <div class="col-md-3 text-right">
+                  <label for="img">Image Url</label>
+              </div>
+              <div class="col-md-8">
+                <input type="text" 
+                        class="form-control" 
+                        placeholder="Add an image of the book"
+                        [(ngModel)]="currentBook.img"
+                        name="img"
+                        #img="ngModel"
+                        required>
+                <div *ngIf="img.invalid && (img.dirty || img.touched)"
+                        class="alert alert-danger">
+                        Please write the book`s image link in folowing format: https://url.jpg, for example: https://images.gr-assets.com/books/1384803290l/18626867.jpg
+                 </div>
+              </div>
+            </div>
+          <div class="row form-group add-new-book">
+            <div class="col-md-6 text-right">
+              <button type="button" (click)="saveNewOrExistBook(currentBook)"
+              [disabled]="bookForm.invalid"
+              (click)="bookForm.reset()">
+                Save
+              </button>
+            </div>
+            <div class="col-md-6 text-left">
+              <button (click)="exitWithoutChanges()">
+                Cancel
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
