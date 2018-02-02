@@ -2,14 +2,19 @@
   "name": "library-backend",
   "version": "0.0.1",
   "main": "index.js",
+  "esversion": "6",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon server.js"
   },
   "repository": {
     "type": "git",
     "url": "\u0016\u0016http://github.com/furmanvitweb/books-library-with-server-part.git"
   },
-  "author": "",
+  "author": "furmanvit",
   "license": "ISC",
-  "description": ""
+  "description": "",
+  "devDependencies": {
+    "nodemon": "^1.14.12"
+  }
 }
