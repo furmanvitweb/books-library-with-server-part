@@ -18,4 +18,16 @@ export class NetService {
     getAllBooks(): Observable<M.Book[]> {
         return this.http.get<M.Book[]>(this.apiUrl);
     }
+
+    getBook(bookId: string): Observable<M.Book> {
+        return this.http.get<M.Book>(`${this.apiUrl}/${bookId}`, { headers: this.getHeaders() });
+    }
+
+    addBook(book: M.Book): Observable<string> {
+        return this.http.post<string>(this.apiUrl, book, { headers: this.getHeaders() });
+    }
+    
+    deleteBook(bookId: string): Observable<string> {
+        return this.http.delete<string>(`${this.apiUrl}/${bookId}`, { headers: this.getHeaders() });
+    }
 }

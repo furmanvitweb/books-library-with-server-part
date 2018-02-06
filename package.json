@@ -1,0 +1,21 @@
+{
+  "name": "books-library-with-server-part",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {},
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/furmanvitweb/books-library-with-server-part.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/furmanvitweb/books-library-with-server-part/issues"
+  },
+  "homepage": "https://github.com/furmanvitweb/books-library-with-server-part#readme"
+}

@@ -10,6 +10,7 @@ export class BookService {
 
     constructor(private net: NetService) {
         this.books = [];
+        console.log('init BookService.books.length = ' + this.books.length);
     }
 
     initDefaultBook(): M.Book {
@@ -23,8 +24,16 @@ export class BookService {
         return this.currentBook;
     }
 
-    saveNewBook(currentBook: M.Book) {
-        this.books.push(currentBook);
+    saveNewBook(newBook: M.Book) {
+        console.log('BookService.addBook() | books.length = ' + this.books.length);
+        if (this.books) {
+            this.books.push(newBook);
+        } else {
+            this.getAllBooksFromServer().subscribe(res => {
+                this.books = res;
+                this.books.push(newBook);
+            });
+        }
     }
 
     saveExistBook(currentBook: M.Book, bookId: string) {
@@ -39,13 +48,19 @@ export class BookService {
         return ExistBookIndex;
     }
 
-    deleteBook(currentBook: M.Book, bookTitle: string) {
-        let result = confirm(`Are sure, that you want to delete "${currentBook.title}'s book"?`);
+    deleteBook(bookId: string, bookTitle: string, books) {
+        let result = confirm(`Are sure, that you want to delete "${bookTitle}'s book"?`);
         if (result) {
-            let index = this.books.indexOf(currentBook);
+            let index = books.indexOf(bookId);
             if (index > - 1) {
-                this.books.splice(index, 1);
+                books.splice(index, 1);
             }
+            this.deleteBookFromServer(bookId).subscribe(res => {
+                console.log(res);
+            },
+                err => {
+                    console.log('Error occured');
+                });
         }
     }
 
@@ -83,5 +98,17 @@ export class BookService {
 
     getAllBooksFromServer(): Observable<M.Book[]> {
         return this.net.getAllBooks();
+    }
+
+    getBookFromServer(bookId: string): Observable<M.Book> {
+        return this.net.getBook(bookId);
+    }
+
+    addBookToServer(book: M.Book): Observable<string> {
+        return this.net.addBook(book);
+    }
+
+    deleteBookFromServer(bookId: string): Observable<string> {
+        return this.net.deleteBook(bookId);
     }
 }
